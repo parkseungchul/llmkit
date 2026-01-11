@@ -3,6 +3,13 @@
 This project provides a minimal, reusable Python module to call multiple LLM providers
 (OpenAI-style, Gemini REST) using a single internal input format.
 
+## Runtime
+
+- Python: **3.12+** (target: AWS Lambda `python3.12`)
+- External dependencies: `requests`, `PyYAML` (see `requirements.txt`)
+
+Note: `requirements.txt` cannot enforce a Python version; the version constraint is defined in `pyproject.toml` (`requires-python`).
+
 Scope:
 - Layer1: single request -> single provider call
 - Optional: RAG context injection if `rag_id` / `rag_text` is provided (file-based resolver only)

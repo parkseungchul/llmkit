@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-llmkit"
+version = "0.1.0"
+description = "Layer-1 LLM caller: one input schema, provider-specific adapters (OpenAI/YTL/Gemini)."
+readme = "README.md"
+# Target runtime: Python 3.12 (e.g., AWS Lambda python3.12)
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [{name = "Simon"}]
+
+dependencies = [
+  "requests>=2.31.0",
+  "PyYAML>=6.0.1",
+]
+
+[project.scripts]
+llmkit = "llmkit.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
