@@ -1,0 +1,15 @@
+# Allowlist for strict mode.
+# If strict=true and this file is missing/empty, calls are blocked.
+
+providers:
+  - openai
+  - ytl
+  - gemini
+
+models:
+  openai:
+    - gpt-4o-mini
+  ytl:
+    - ILMU-text
+  gemini:
+    - gemini-2.5-flash-lite

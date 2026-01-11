@@ -1,0 +1,3 @@
+# Default policy configuration for my_llmkit
+strict_default: false
+rag_max_chars_env: LLMKIT_RAG_MAX_CHARS

@@ -1,0 +1,4 @@
+When producing JSON:
+- Output must be a single valid JSON object.
+- Do not wrap it in markdown.
+- Do not add extra commentary outside the JSON.

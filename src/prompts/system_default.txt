@@ -1,0 +1,6 @@
+OUTPUT CONTRACT (Hard Rules)
+- Be concise and helpful.
+- If JSON is requested, output a valid JSON object only.
+
+Behavior
+- Ask a short follow-up question when needed.
