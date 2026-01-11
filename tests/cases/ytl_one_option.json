@@ -1,0 +1,38 @@
+{
+  "defaults": {
+    "env": "loc",
+    "provider": "ytl",
+    "model": "ILMU-text",
+    "system_prompt": "",
+    "user_prompt": "@tests/assets/prompts/user_hi.txt",
+    "rag_id": "",
+    "rag_text": "",
+    "return_json": false,
+    "notice": ""
+  },
+  "cases": [
+    {
+      "id": "YTL_BASE",
+      "notice": "baseline (no system/rag/json)"
+    },
+    {
+      "id": "YTL_SYS",
+      "system_prompt": "@tests/assets/prompts/system_base.txt",
+      "notice": "system_prompt ON"
+    },
+    {
+      "id": "YTL_RAG",
+      "user_prompt": "Who is Jacob?",
+      "rag_id": "RAG_SAMPLE",
+      "rag_text": "@tests/assets/rag/rag_sample.txt",
+      "notice": "rag ON (injected)"
+    },
+    {
+      "id": "YTL_JSON",
+      "system_prompt": "@tests/assets/prompts/system_json.txt",
+      "user_prompt": "Say hello as JSON",
+      "return_json": true,
+      "notice": "return_json ON"
+    }
+  ]
+}

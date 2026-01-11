@@ -1,56 +1,29 @@
-"""Simple CLI for Layer1.
+"""Repo-root convenience entrypoint.
 
-Usage examples:
-- JSON string input:
-  python cli.py "{\"provider\":\"openai\",\"model\":\"gpt-4o-mini\",\"user_prompt\":\"hi\"}"
+설치(pip install -e .) 없이도 아래처럼 실행할 수 있게 해준다.
 
-- JSON file input (prefix with @):
-  python cli.py @request.json
+  python cli.py run tests/cases/test01_openai_basic.json
 
-- Pretty print:
-  python cli.py @request.json --pretty
-
-Notes:
-- This CLI does not manage multi-turn or fallback. It is strictly a single call executor.
+실제 구현은 패키지 모듈 `llmkit.cli`에 있다.
 """
-import argparse
-import json
+
+from __future__ import annotations
+
+import os
 import sys
-from pathlib import Path
-from typing import Any, Dict
 
-from src.llmkit.client import LLMClient
-from src.llmkit.logging_util import get_logger
 
-logger = get_logger(__name__)
+def main() -> int:
+    # src/ 레이아웃이므로, repo-root에서 실행할 때 src를 sys.path에 추가
+    repo_root = os.path.dirname(os.path.abspath(__file__))
+    src_dir = os.path.join(repo_root, "src")
+    if src_dir not in sys.path:
+        sys.path.insert(0, src_dir)
 
-def _load_input(spec: str) -> Dict[str, Any]:
-    if spec.startswith("@"):
-        p = Path(spec[1:])
-        data = p.read_text(encoding="utf-8")
-        return json.loads(data)
+    from llmkit.cli import main as _main
 
-    return json.loads(spec)
+    return _main()
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("input", help="JSON string or @path/to/json")
-    ap.add_argument("--pretty", action="store_true", help="Pretty print the output JSON")
-    args = ap.parse_args()
-
-    try:
-        req = _load_input(args.input)
-    except Exception as e:
-        logger.error("Failed to parse input: %s", e)
-        sys.exit(2)
-
-    client = LLMClient()
-    out = client.run(req, request_id="CLI")
-
-    if args.pretty:
-        print(json.dumps(out, ensure_ascii=False, indent=2))
-    else:
-        print(json.dumps(out, ensure_ascii=False))
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

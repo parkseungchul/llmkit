@@ -1,0 +1,2 @@
+Return ONLY a JSON object. No extra text.
+Keys: response (string), there_is_question_mark (boolean).

@@ -1,0 +1,38 @@
+{
+  "defaults": {
+    "env": "loc",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash-lite",
+    "system_prompt": "",
+    "user_prompt": "@tests/assets/prompts/user_hi.txt",
+    "rag_id": "",
+    "rag_text": "",
+    "return_json": false,
+    "notice": ""
+  },
+  "cases": [
+    {
+      "id": "GEMINI_BASE",
+      "notice": "baseline (no system/rag/json)"
+    },
+    {
+      "id": "GEMINI_SYS",
+      "system_prompt": "@tests/assets/prompts/system_base.txt",
+      "notice": "system_prompt ON"
+    },
+    {
+      "id": "GEMINI_RAG",
+      "user_prompt": "Who is Jacob?",
+      "rag_id": "RAG_SAMPLE",
+      "rag_text": "@tests/assets/rag/rag_sample.txt",
+      "notice": "rag ON (injected)"
+    },
+    {
+      "id": "GEMINI_JSON",
+      "system_prompt": "@tests/assets/prompts/system_json.txt",
+      "user_prompt": "Say hello",
+      "return_json": true,
+      "notice": "return_json ON"
+    }
+  ]
+}
